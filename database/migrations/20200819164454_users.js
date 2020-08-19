@@ -1,6 +1,6 @@
 exports.up = function (knex) {
     return knex.schema
-      .createTable("usertype", tbl => {
+      .createTable("usertypes", tbl => {
         tbl.increments();
   
         tbl.string("name", 128).notNullable().unique();
@@ -14,13 +14,13 @@ exports.up = function (knex) {
         tbl
           .integer("usertype")
           .unsigned()
-          .references("usertype.id")
+          .references("usertypes.id")
           .onDelete("RESTRICT")
           .onUpdate("CASCADE");
       });
   };
   
   exports.down = function (knex) {
-    return knex.schema.dropTableIfExists("usertype").dropTableIfExists("users");
+    return knex.schema.dropTableIfExists("usertypes").dropTableIfExists("users");
   };
   
